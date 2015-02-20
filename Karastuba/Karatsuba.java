@@ -12,21 +12,24 @@ public class Karatsuba {
         x = format(x);
         y = format(y);
 
+        System.out.println(x + " " + y);
         // base case: both inputs are one character long so we return the product
         if (x.length() == 1 || y.length() == 1) return Integer.toString(Integer.parseInt(x) * Integer.parseInt(y));
 
         int n = Math.max(x.length(), y.length());
-        int m = n / 2; // ceil of n/2
+        int m = (n + 1) / 2;
 
         // input x gets split, the first half becomes a
         // and the second half becomes b
-        String a = x.substring(0, x.length()-n+m);
-        String b = x.substring(x.length()-n+m);
+        int splitX = x.length() - Math.min(x.length(), m);
+        String a = x.substring(0, splitX);
+        String b = x.substring(splitX);
 
         // likewise y gets split. c is the first half
         // and d is the second half
-        String c = y.substring(0, y.length()-n+m);
-        String d = y.substring(y.length()-n+m);
+        int splitY = y.length() - Math.min(y.length(), m);
+        String c = y.substring(0, splitY);
+        String d = y.substring(splitY);
 
 
         String z0 = multiply(b, d);
@@ -42,25 +45,26 @@ public class Karatsuba {
 
         String middle = subtract(subtract(z1, z2), z0);
         System.out.println("middle: " + middle);
-        middle += getPadding((n+1)/2);
-        String padding = getPadding(n);
+        z2 += getPadding(2*m);
+        System.out.println("   a*c with " + n + " zeros of padding is: " + z2);
+        middle += getPadding(m);
+        System.out.println("middle with " + m + " zeros of padding is: " + middle);
 
         System.out.println("expected: " + (Integer.parseInt(x) * Integer.parseInt(y)));
-        return add(add(z2 + padding, middle), z0);
+        return add(add(z2, middle), z0);
     }
 
     private static String format(String x) {
         return x.length() == 0 ? "0" : x;
     }
 
-    // TODO: implement as a string operation
+    // TODO: Implement string arithmetic operations to handle big integers
     private  static String add(String x, String y) {
         x = format(x);
         y = format(y);
         return Integer.toString(Integer.parseInt(x) + Integer.parseInt(y));
     }
 
-    // TODO: implement as a string operation
     private static String subtract(String x , String y) {
         x = format(x);
         y = format(y);
@@ -71,7 +75,6 @@ public class Karatsuba {
         char[] zeros = new char[n];
         Arrays.fill(zeros, '0');
         String word =  new String(zeros);
-        System.out.println("the padding is: " + word);
         return word;
     }
 }
