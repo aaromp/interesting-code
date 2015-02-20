@@ -12,7 +12,6 @@ public class Karatsuba {
         x = format(x);
         y = format(y);
 
-        System.out.println(x + " " + y);
         // base case: both inputs are one character long so we return the product
         if (x.length() == 1 || y.length() == 1) return Integer.toString(Integer.parseInt(x) * Integer.parseInt(y));
 
@@ -31,19 +30,19 @@ public class Karatsuba {
         String c = y.substring(0, splitY);
         String d = y.substring(splitY);
 
-
+        // complete the three necessary multiplications
         String z0 = multiply(b, d);
         String z1 = multiply(add(a, b), add(c,d));
         String z2 = multiply(a, c);
 
-
+        // apply Gauss' trick and add padding
         String middle = subtract(subtract(z1, z2), z0);
         z2 += getPadding(2*m);
         middle += getPadding(m);
-
         return add(add(z2, middle), z0);
     }
 
+    // translate the empty string into a zero
     private static String format(String x) {
         return x.length() == 0 ? "0" : x;
     }
