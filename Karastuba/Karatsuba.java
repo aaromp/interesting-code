@@ -36,21 +36,11 @@ public class Karatsuba {
         String z1 = multiply(add(a, b), add(c,d));
         String z2 = multiply(a, c);
 
-        System.out.println("n: " + n + " m: " + m);
-        System.out.println("a: " + a + " b: " + b + " c: " + c + " d: " + d);
-        System.out.println("a+b: " + add(a, b) + " c+d: " + add(c, d));
-        System.out.println("(a+b)*(c+d): " + z1);
-        System.out.println("b*d: " + z0);
-        System.out.println("a*c: " + z2);
 
         String middle = subtract(subtract(z1, z2), z0);
-        System.out.println("middle: " + middle);
         z2 += getPadding(2*m);
-        System.out.println("   a*c with " + n + " zeros of padding is: " + z2);
         middle += getPadding(m);
-        System.out.println("middle with " + m + " zeros of padding is: " + middle);
 
-        System.out.println("expected: " + (Integer.parseInt(x) * Integer.parseInt(y)));
         return add(add(z2, middle), z0);
     }
 
