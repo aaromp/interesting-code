@@ -20,7 +20,7 @@ public class Mergesort {
         System.out.println(failures + " failures out of " + 10000 + " trials sorting 1000 shuffled values.");
     }
 
-    private static int[] sort(int[] array) {
+    public static int[] sort(int[] array) {
         if (array.length <= 1) return array;
 
         int[] first = Arrays.copyOfRange(array, 0, array.length/2);
