@@ -9,7 +9,7 @@ public class CountingInversions {
         System.out.println(Arrays.toString(test) + " should be sorted and have " + count + " inversions.");
     }
 
-    private static int sortAndCount(int[] array) {
+    public static int sortAndCount(int[] array) {
         int count = 0;
 
         if (array.length == 1) return count;
@@ -31,7 +31,7 @@ public class CountingInversions {
         int resultIndex = 0;
 
         while (resultIndex < result.length) {
-            if (rightIndex >= right.length || (leftIndex < left.length && left[leftIndex] < right[rightIndex])) {
+            if (rightIndex >= right.length || (leftIndex < left.length && left[leftIndex] <= right[rightIndex])) {
                 result[resultIndex] = left[leftIndex];
                 leftIndex++;
             } else {
