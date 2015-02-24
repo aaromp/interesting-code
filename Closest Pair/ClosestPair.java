@@ -7,38 +7,6 @@ public class ClosestPair {
     public static void main (String[] args) {
     }
 
-    public static class Point {
-        public final double x;
-        public final double y;
-
-        public Point(double x, double y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public String toString() {
-            return "(" + this.x + ", " + this.y + ")";
-        }
-    }
-
-    public static class Pair {
-        public final Point p;
-        public final Point q;
-        public double distance;
-
-        public Pair(Point p, Point q) {
-            this.p = p;
-            this.q = q;
-            this.distance = calculateEuclideanDistance(p, q);
-        }
-
-        public static double calculateEuclideanDistance(Point p, Point q) {
-            double xDifference = p.x - q.x;
-            double yDifference = p.y - q.y;
-            return Math.sqrt((xDifference * xDifference) + (yDifference * yDifference));
-        }
-    }
-
     private static Pair findClosestSplitPair(Point[] px, Point[] py, double delta) {
         double x = px[px.length/2].x;
         // filter out the points in py that are not contained within the interval [x-delta, x+delta]
@@ -110,3 +78,4 @@ public class ClosestPair {
         }
     }
 }
+
