@@ -5,12 +5,17 @@ public class ClosestPairTest {
 
     @Test
     public void test_find_closest_pair() {
-        double[][] coordinates = {{0, 0}, {0, 1}, {100, 45}, {2, 3}, {9, 9}};
-        Point[] points = convertCoordinatesToPoints(coordinates);
+        double[][] coordinates1 = {{0, 0}, {0, 1}, {100, 45}, {2, 3}, {9, 9}};
+        Point[] points = convertCoordinatesToPoints(coordinates1);
 
         Pair closestPair = ClosestPair.findClosestPair(points);
+        Assert.assertEquals("failure - found incorrect pair", 1.0, closestPair.distance, 0.0);
 
-        Assert.assertEquals("failure - found incorrect pair", 1.0, closestPair.distance);
+        double[][]  coordinates2 = {{0, 0}, {-4, 1}, {-7, -2}, {4, 5}, {1, 1}};
+        points = convertCoordinatesToPoints(coordinates2);
+
+        closestPair = ClosestPair.findClosestPair(points);
+        Assert.assertEquals("failure - found incorrect pair", 1.414214, closestPair.distance, 0.000001);
     }
 
     public Point[] convertCoordinatesToPoints(double[][] coordinates) {

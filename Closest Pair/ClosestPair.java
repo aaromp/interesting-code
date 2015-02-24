@@ -19,7 +19,7 @@ public class ClosestPair {
         Pair bestPair = null;
 
         for (int i = 0; i < sy.size(); i++) {
-            for (int j = 0; j < Math.min(sy.size()-i, 7); j++) {
+            for (int j = 1; j < Math.min(sy.size()-i-1, 7); j++) {
                 Pair pij = new Pair(sy.get(i), sy.get(i+j));
                 if (pij.distance < bestDistance) {
                     bestDistance = pij.distance;
@@ -32,7 +32,24 @@ public class ClosestPair {
     }
 
     private static Pair recFindClosestPair(Point[] px, Point[] py) {
-        // base case only have a few points..return closest pair among them
+        Pair closestPair = null;
+
+        // base case: when there are fewer than 4 points remaining return the smallest among them
+        if (px.length < 2) return closestPair;
+        if (px.length < 4) {
+            Pair p12 = new Pair(px[0], px[1]);
+            if (px.length == 2) return p12;
+
+            Pair p13 = new Pair(px[0], px[2]);
+            Pair p23 = new Pair(px[1], px[2]);
+
+            closestPair = p12.distance < p13.distance ? p12 : p13;
+            closestPair = closestPair.distance < p23.distance ? closestPair : p23;
+
+            return closestPair;
+        }
+
+        // recursive case: partitian the remaining points and find the closes point between the three
         Point[] qx = Arrays.copyOfRange(px, 0, px.length/2);
         Point[] rx = Arrays.copyOfRange(px, px.length/2, px.length);
         Point[] qy = Arrays.copyOfRange(py, 0, py.length/2);
@@ -40,7 +57,7 @@ public class ClosestPair {
 
         Pair closestPairLeft = recFindClosestPair(qx, qy);
         Pair closestPairRight = recFindClosestPair(rx, ry);
-        Pair closestPair = closestPairLeft.distance < closestPairRight.distance ? closestPairLeft : closestPairRight;
+        closestPair = closestPairLeft.distance < closestPairRight.distance ? closestPairLeft : closestPairRight;
 
         Pair closestSplitPair = findClosestSplitPair(px, py, closestPair.distance);
         if (closestSplitPair != null) closestPair = closestPair.distance < closestSplitPair.distance ? closestPair : closestSplitPair;
