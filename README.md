@@ -10,6 +10,7 @@ This is a repository of implementations of interesting algorithms.
 | [Strassen’s Algorithm](http://en.wikipedia.org/wiki/Strassen_algorithm)                | Java            | Divide and Conquer | θ(n<sup>log<sub>2</sub>7</sup>) |
 | [Closest Pair](http://en.wikipedia.org/wiki/Closest_pair_of_points_problem) Algorithm  | Java            | Divide and Conquer | O(n log n)                      |
 | [Quicksort](http://en.wikipedia.org/wiki/Quicksort)                                    | Java            | Divide and Conquer | O(n log n)                      |
+| [Quickselect](http://en.wikipedia.org/wiki/Quickselect)                                | Java            | Divide and Conquer | O(n)                            |
 
 ### TODO list
 | Algorithm                                                                              | Language        | Design Paradigm    | Runtime Complexity              |
