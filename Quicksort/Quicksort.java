@@ -6,12 +6,16 @@ public class Quicksort  {
 
     private static final Random generator = new Random();
 
+    public static void sort(int[] array) {
+        recSort(array, 0, array.length);
+    }
+
     public static void recSort(int[] array, int start, int end) {
         // base case: start is greater than or equal to the end so our range is already sorted
         if (start >= end) return;
 
         // recursive case: select a pivot and sort the two partitions
-        int pivot = generator.nextInt((end - start) + 1) + start;
+        int pivot = generator.nextInt(end - start) + start;
 
         // move the pivot to the beginning where it's easy to locate
         swap(array, start, pivot);
@@ -20,8 +24,8 @@ public class Quicksort  {
         int less = start + 1;
         for (int more = less; more < end; more++) {
             if (array[more] <= array[start]) {
-                less++;
                 swap(array, less, more);
+                less++;
             }
         }
 
@@ -29,7 +33,7 @@ public class Quicksort  {
         swap(array, start, less - 1);
 
         recSort(array, start, less - 1);
-        recSort(array, less + 1, end);
+        recSort(array, less, end);
     }
 
     private static void swap(int[] array, int first, int second) {
@@ -38,3 +42,4 @@ public class Quicksort  {
         array[second] = temporary;
     }
 }
+
