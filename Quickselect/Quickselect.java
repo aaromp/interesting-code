@@ -8,31 +8,36 @@ public class Quickselect {
 
     private static int recSelect(int[] array, int order, int start, int end) {
         // base case: the interval only contains one item so we must be trying to select it
-        if (start >= end) return array[end-start-1];
+        if (end - start == 1) return array[start];
 
-        int pivot = generator.nextInt(end - start) + start; // pivot selected at random in an attempt to select a good pivot
+        int pivotIndex = generator.nextInt(end - start) + start; // pivot selected at random in an attempt to select a good pivot
+        pivotIndex = partition(array, pivotIndex, start, end);
 
+        // base case: if the index of the pivot matches the order, then we've selected our element
+        if (order == pivotIndex) return array[pivotIndex];
+
+        // recursive case: we select the element from the appropriate half
+        else if (order < pivotIndex) return recSelect(array, order, start, pivotIndex);
+        else return recSelect(array, order, pivotIndex+1, end);
+    }
+
+    private static int partition(int[] array, int pivot, int start, int end) {
         // move the pivot to a predictable place
         swap(array, pivot, start);
 
         // partition the array
-        int less = start + 1;
-        for (int more = less; more < end; more++) {
+        int firstLarger = start + 1;
+        for (int current = firstLarger; current < end; current++) {
             // if the current element is less than the pivot we want to swap it at the less/more boundary
-            if (array[more] < array[start]) {
-                swap(array, more, less);
-                less++;
+            if (array[current] < array[start]) {
+                swap(array, current, firstLarger);
+                firstLarger++;
             }
         }
         // swap the pivot into its correct index
-        swap(array, start, less-1);
+        swap(array, start, firstLarger-1);
 
-        // base case: if the index of the pivot matches the order, then we've selected our element
-        if (order == less-1) return array[less-1];
-
-        // recursive case: we select the element from the appropriate half
-        if (order < less-1) return recSelect(array, order, start, less-1);
-        else return recSelect(array, order-less-1, less, end);
+        return firstLarger-1;
     }
 
     private static void swap(int[] array, int first, int second) {
