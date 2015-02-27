@@ -3,14 +3,14 @@ import java.util.Arrays;
 public class CountingInversions {
     public static void main (String[] args) {
         int[] test = {1, 3, 5, 2, 4, 6};
-        int count = sortAndCount(test);
+        long count = sortAndCount(test);
 
         System.out.println("Counting Inversions...");
         System.out.println(Arrays.toString(test) + " should be sorted and have " + count + " inversions.");
     }
 
-    public static int sortAndCount(int[] array) {
-        int count = 0;
+    public static long sortAndCount(int[] array) {
+        long count = 0;
 
         if (array.length == 1) return count;
 
@@ -23,8 +23,8 @@ public class CountingInversions {
         return count;
     }
 
-    private static int mergeAndCount(int[] left, int[] right, int[] result) {
-        int count = 0;
+    private static long mergeAndCount(int[] left, int[] right, int[] result) {
+        long count = 0;
 
         int leftIndex = 0;
         int rightIndex = 0;
