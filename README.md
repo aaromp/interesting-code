@@ -15,5 +15,5 @@ This is a repository of implementations of interesting algorithms.
 ### TODO list
 | Algorithm                                                                              | Language        | Design Paradigm    | Runtime Complexity              |
 | -------------------------------------------------------------------------------------- | :-------------: | -----------------: | ------------------------------: |
-|                                                                                        |                 |                    |                                 |
+| [Karger’s Algorithm](http://en.wikipedia.org/wiki/Karger%27s_algorithm)                |                 |                    |                                 |
 
