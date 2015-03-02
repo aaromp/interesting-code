@@ -27,14 +27,14 @@ public class HeapPriorityQueue<T extends Comparable<T>> {
         return storage.size();
     }
 
-    private void siftDown(int parentIndex) {
+    private void bubbleDown(int parentIndex) {
         int leftChildIndex = parentIndex * 2;
         int rightChildIndex = leftChildIndex + 1;
 
         // base case: parent index is greater than the allocated space so we're done
         if (parentIndex > storage.size()) return;
 
-        // recursive case: value at parent index is greater than either of children so we sift down the smaller of the two
+        // recursive case: value at parent index is greater than either of children so we bubble down the smaller of the two
         Integer minIndex = null;
 
         if (leftChildIndex <= storage.size() && rightChildIndex <= storage.size()) {
@@ -45,7 +45,7 @@ public class HeapPriorityQueue<T extends Comparable<T>> {
 
         if (minIndex != null && storage.get(parentIndex-1).compareTo(storage.get(minIndex-1)) > 0) {
             swap(parentIndex-1, minIndex-1);
-            siftDown(minIndex);
+            bubbleDown(minIndex);
         }
     }
 
@@ -55,7 +55,7 @@ public class HeapPriorityQueue<T extends Comparable<T>> {
         T result = storage.remove(storage.size()-1);
 
         // restore the heap by sifting down
-        siftDown(1);
+        bubbleDown(1);
 
         return result;
     }
