@@ -66,19 +66,19 @@ public class HeapPriorityQueue<T extends Comparable<T>> {
         storage.set(index2, temporary);
     }
 
-    private void heapify(int childIndex) {
+    private void bubbleUp(int childIndex) {
         int parentIndex = childIndex/2;
 
         // base case: if we've reached the root of the heap or the child is greater than or equal to its parent, we're done
         if (childIndex == 1 || storage.get(childIndex-1).compareTo(storage.get(parentIndex-1)) > -1) return;
 
-        // recursive step: swap the child with its parent and heapify one step further
+        // recursive step: swap the child with its parent and bubble up one step further
         swap(childIndex-1, parentIndex-1);
-        heapify(parentIndex);
+        bubbleUp(parentIndex);
     }
 
     public void enqueue(T element) {
         storage.add(element);
-        heapify(storage.size());
+        bubbleUp(storage.size());
     }
 }
