@@ -12,9 +12,16 @@ This is a repository of implementations of interesting algorithms.
 | [Quicksort](http://en.wikipedia.org/wiki/Quicksort)                                    | Java            | O(n log n)                      | A randomized divide and conquer algorithm for fast sorting. Runs in constant space.                                                                                                           |
 | [Quickselect](http://en.wikipedia.org/wiki/Quickselect)                                | Java            | O(n)                            | A divide and conquer algorithm for selecting a element in an unsorted collection. Resembles quicksort with one fewer recursive calls.                                                         |
 | [Heapsort](http://en.wikipedia.org/wiki/Heapsort)                                      | Java            | O(n log n)                      | Implemented as a min heap priority queue. Enqueues and dequeues maintain a heap meaning that repeated dequeues will sort the input. This generic implmentation is built using a storage arary |
-### TODO list
-| Algorithm                                                                              | Description                                                        |
-| -------------------------------------------------------------------------------------- | -------------------------------                                    |
-| [Karger’s Algorithm](http://en.wikipedia.org/wiki/Karger%27s_algorithm)                | An algorithm for finding minimum cuts in a graph.                  |
-| [Kosaraju’s Algorithm](http://en.wikipedia.org/wiki/Kosaraju%27s_algorithm)            | An algorithm for finding strongly connected components in a graph. |
+
+## Data Structures
+| Data Structure | Language | Supported Operation | Runtime Complexity |
+| -------------- | :-----:  | :-----------------: | ------------------ |
+
+### TODO
+| TODO                                                                                   | Description                                                         |
+| -------------------------------------------------------------------------------------- | -------------------------------                                     |
+| [Karger’s Algorithm](http://en.wikipedia.org/wiki/Karger%27s_algorithm)                | An algorithm for finding minimum cuts in a graph.                   |
+| [Kosaraju’s Algorithm](http://en.wikipedia.org/wiki/Kosaraju%27s_algorithm)            | An algorithm for finding strongly connected components in a graph.  |
+| [Dijkstra’s Algorithm](http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)            | An algorithm for finding the shortest paths between nodes in graph. |
+| [Kruskal’s Algorithm](http://en.wikipedia.org/wiki/Kruskal%27s_algorithm)              | A greedy algorithm for finding minimum spanning trees.              |
 
